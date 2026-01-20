@@ -3,19 +3,24 @@ function AuthLayout({ title, subtitle, children }) {
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
 
       <div className="hidden md:flex flex-col justify-center items-center
-      bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-10">
+      bg-gradient-to-br from-blue-200 -700 text-lightblue p-10">
 
-        <h1 className="text-4xl font-extrabold tracking-wide mb-4">
-          CityNest
+        <h1 className="text-7xl font-extrabold tracking-wide mb-4">
+          Beast House
+              💀
         </h1>
+        
+             <br />
+             <br />
+             <br />
 
         <p className="text-lg text-center max-w-sm opacity-90">
-          Verified stays & home-style food for students and professionals.
+         “Don’t compare yourself to others. Compare yourself to the person you were yesterday.”
         </p>
       </div>
 
-      <div className="flex items-center justify-center bg-gray-100">
-        <div className="bg-white w-full max-w-md p-8 rounded-2xl shadow-2xl">
+      <div className="flex items-center justify-center bg-gray-50">
+        <div className="bg-white-50 w-full max-w-md p-8 rounded-2xl shadow-2xl">
           <h2 className="text-2xl font-bold text-gray-800 mb-1">
             {title}
           </h2>

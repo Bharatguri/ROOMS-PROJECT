@@ -10,17 +10,17 @@ export default function Login() {
   const [role, setRole] = useState("student");
 
   const handleLogin = () => {
-    login(role); // role saved
+    login(role); 
     navigate("/dashboard");
   };
 
   return (
-    <AuthLayout title="Welcome Back 👋" subtitle="Login to continue to CityNest">
+    <AuthLayout title="Welcome..  Hope you fine 👋" subtitle="Login to continue built you're beast body..">
       <Input placeholder="Email or Mobile Number" />
       <Input type="password" placeholder="Password" />
 
-      {/* Role Select */}
-      <select
+    
+      {/* <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
         className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-lg"
@@ -29,7 +29,7 @@ export default function Login() {
         <option value="owner">Property Owner</option>
         <option value="tiffin">Tiffin Provider</option>
         <option value="tiffin">Employee</option>
-      </select>
+      </select> */}
 
       <button
         onClick={handleLogin}
