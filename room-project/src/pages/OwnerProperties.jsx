@@ -7,7 +7,7 @@ export default function OwnerProperties() {
 
       <div className="bg-white p-6 rounded-xl shadow">
         <p className="text-gray-600">
-          Owner dashboard: yahan properties list + add property form aayega.
+          Owner dashboard: yahan Gym list + add ExerSice and Diet form aayega.
         </p>
 
         <button className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg">

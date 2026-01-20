@@ -6,11 +6,11 @@ function AuthLayout({ title, subtitle, children }) {
       bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-10">
 
         <h1 className="text-4xl font-extrabold tracking-wide mb-4">
-          CityNest
+          My Gym 
         </h1>
 
         <p className="text-lg text-center max-w-sm opacity-90">
-          Verified stays & home-style food for students and professionals.
+          Join our website and find the best gym for you and build your body.
         </p>
       </div>
 

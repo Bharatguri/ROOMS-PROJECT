@@ -25,10 +25,11 @@ export default function Login() {
         onChange={(e) => setRole(e.target.value)}
         className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-lg"
       >
-        <option value="student">Student</option>
-        <option value="owner">Property Owner</option>
-        <option value="tiffin">Tiffin Provider</option>
-        <option value="tiffin">Employee</option>
+        <option value="student">Begginer</option>
+        <option value="New Frind">New Frind</option>
+        <option value="Frind">Old Frind </option>
+        <option value="owner">Gym Owner</option>
+        <option value="tiffin">Supliment Provider</option>
       </select>
 
       <button
