@@ -15,7 +15,7 @@ export default function Navbar() {
       <h1 className="text-lg font-semibold text-gray-800">
         {user?.role ? `${user.role.toUpperCase()} Dashboard` : "Dashboard"}
       </h1>
-      <h1>Hello</h1>
+     
 
       <div className="flex items-center gap-4">
         <span className="text-sm text-gray-600">
