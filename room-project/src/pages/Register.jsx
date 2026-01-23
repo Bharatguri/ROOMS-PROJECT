@@ -10,16 +10,17 @@ export default function Register() {
       subtitle="Start your journey with CityNest"
     >
       <Input placeholder="Full Name" />
-      <Input placeholder="Email Address" />
-      <Input placeholder="Mobile Number" />
+      <Input placeholder="Weight" />
+      <Input placeholder="Height" />
+       <Input placeholder="Email Address" />
       <Input type="password" placeholder="Password" />
 
       <select className="w-full mb-4 px-4 py-2 border rounded-lg">
         <option>Select Role</option>
-        <option>Student</option>
-        <option>Working Professional</option>
-        <option>Property Owner</option>
-        <option>Tiffin Provider</option>
+        <option>Begginer</option>
+        <option>Modrate</option>
+        <option>Experience Holder </option>
+        <option>Professional</option>
       </select>
 
       <Button text="Create Account" />

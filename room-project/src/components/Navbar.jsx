@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <div className="h-16 bg-white border-b flex items-center justify-between px-6 ml-64 fixed top-0 right-0 left-0">
       <h1 className="text-lg font-semibold text-gray-800">
-        {user?.role ? `${user.role.toUpperCase()} Dashboard` : "Dashboard"}
+        {}
       </h1>
      
 

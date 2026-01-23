@@ -1,4 +1,6 @@
 import DashboardLayout from "../components/DashboardLayout";
+import { useNavigate } from "react-router-dom";
+
 
 export default function SearchGym() {
   const gyms = [
@@ -6,6 +8,8 @@ export default function SearchGym() {
     { id: 2, name: "Fitness Arena", place: "Vaishali Nagar", rating: "4.2" },
     { id: 3, name: "Power House Gym", place: "Malviya Nagar", rating: "4.7" },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <DashboardLayout>
@@ -27,9 +31,13 @@ export default function SearchGym() {
               ⭐ Rating: {g.rating}
             </p>
 
-            <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg">
+            <button
+              onClick={() => navigate(`/gym/${g.id}`)}
+              className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg"
+            >
               View Details
             </button>
+
           </div>
         ))}
       </div>

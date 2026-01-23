@@ -6,8 +6,7 @@ function AuthLayout({ title, subtitle, children }) {
       bg-gradient-to-br from-blue-200 -700 text-lightblue p-10">
 
         <h1 className="text-7xl font-extrabold tracking-wide mb-4">
-          Beast House
-              💀
+          Beast House 💀
         </h1>
         
              <br />

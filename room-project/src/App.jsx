@@ -1,27 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// Auth Pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-// Dashboard
 import Dashboard from "./pages/Dashboard";
-
-// GymNest Pages (Sidebar Links)
 import Profile from "./pages/Profile";
 import City from "./pages/City";
 import SearchGym from "./pages/SearchGym";
-import TrainerProfile from "./pages/TrainerProfile";import Diets from "./pages/Diets";
+import TrainerProfile from "./pages/TrainerProfile"; import Diets from "./pages/Diets";
 import Supplements from "./pages/Supplements";
+import GymDetails from "./pages/GymDetails";
+import TrainerBooking from "./pages/TrainerBooking";
+import Membership from "./pages/Membership";
 
-// Protected Route Component
+
+
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-  
+
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -34,7 +32,7 @@ export default function App() {
           }
         />
 
-    
+
         <Route
           path="/profile"
           element={
@@ -43,6 +41,16 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/gym/:id"
+          element={
+            <ProtectedRoute>
+              <GymDetails />
+            </ProtectedRoute>
+          }
+        />
+
 
         <Route
           path="/city"
@@ -88,6 +96,26 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/book-trainer/:name"
+          element={
+            <ProtectedRoute>
+              <TrainerBooking />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/membership"
+          element={
+            <ProtectedRoute>
+              <Membership />
+            </ProtectedRoute>
+          }
+        />
+
+
 
         {/* ✅ FALLBACK ROUTE */}
         <Route path="*" element={<h1 className="p-6">404 Page Not Found</h1>} />

@@ -16,7 +16,7 @@ export default function Login() {
 
   return (
     <AuthLayout title="Welcome..  Hope you fine 👋" subtitle="Login to continue built you're beast body..">
-      <Input placeholder="Email or Mobile Number" />
+      <Input reqired placeholder="Email or Mobile Number" />
       <Input type="password" placeholder="Password" />
 
     

@@ -12,29 +12,32 @@ export default function Sidebar() {
     <div className="h-screen w-64 bg-gray-900 text-white fixed left-0 top-0">
 
       <div className="p-6 text-2xl font-extrabold border-b border-gray-700">
-        MY GYM
+        Beast House 💀
       </div>
 
 
       <div className="px-6 py-3 text-xs uppercase tracking-widest text-gray-400">
-        {user?.role || "guest"} panel
+        {user?.role || "guest"} 
       </div>
 
 
       <nav className="p-4 space-y-2">
         <NavLink to="/dashboard" className={linkClass}>
-          Dashboard
+          Home 
         </NavLink>
 
 
         {user?.role === "student" && (
           <>
-            <NavLink to="/profile" className={linkClass}>Your Profile</NavLink>
+           
             <NavLink to="/city" className={linkClass}>City</NavLink>
             <NavLink to="/searchgym" className={linkClass}>Search Gym</NavLink>
             <NavLink to="/trainer-profile" className={linkClass}>Trainer Profile</NavLink>
-            <NavLink to="/diets" className={linkClass}>About Diets</NavLink>
+            <NavLink to="/membership" className={linkClass}>Membership</NavLink>
+            <NavLink to="/diets" className={linkClass}>About Dietition</NavLink>
             <NavLink to="/supplements" className={linkClass}>Buy Supplements</NavLink>
+             <NavLink to="/profile" className={linkClass}>Profile</NavLink>
+             
 
           </>
         )}
@@ -46,17 +49,6 @@ export default function Sidebar() {
           </NavLink>
         )}
 
-
-        {user?.role === "tiffin" && (
-          <NavLink to="/provider/plans" className={linkClass}>
-            My Food Plans
-          </NavLink>
-        )}
-
-
-        <NavLink to="/profile" className={linkClass}>
-          Profile
-        </NavLink>
       </nav>
     </div>
   );

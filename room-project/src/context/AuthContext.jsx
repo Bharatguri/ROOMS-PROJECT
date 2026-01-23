@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const login = (role = "student") => {
     setUser({
       name: "Demo User",
-      role, // student | owner | tiffin
+      role, 
     });
   };
 
