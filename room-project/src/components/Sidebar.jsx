@@ -16,9 +16,9 @@ export default function Sidebar() {
       </div>
 
 
-      <div className="px-6 py-3 text-xs uppercase tracking-widest text-gray-400">
+      {/* <div className="px-6 py-3 text-xs uppercase tracking-widest text-gray-400">
         {user?.role || "guest"} 
-      </div>
+      </div> */}
 
 
       <nav className="p-4 space-y-2">
