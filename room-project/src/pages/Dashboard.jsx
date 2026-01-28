@@ -8,9 +8,9 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
-      {/* Top Header */}
+     
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 md:p-8 shadow mb-8">
-        {/* Decorative blur */}
+    
         <div className="absolute -top-10 -right-10 w-60 h-60 bg-white/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-16 -left-10 w-72 h-72 bg-black/10 rounded-full blur-3xl" />
 
@@ -24,7 +24,7 @@ export default function Dashboard() {
               one place.
             </p>
 
-            {/* mini badges */}
+     
             <div className="flex flex-wrap gap-2 mt-4">
               <span className="text-xs bg-white/15 border border-white/20 px-3 py-1 rounded-full">
                 ✅ Verified Trainers
@@ -38,7 +38,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Search bar */}
+        
           <div className="bg-white/10 border border-white/20 rounded-2xl p-3 w-full md:w-[420px] backdrop-blur">
             <p className="text-xs text-white/70 mb-2">Quick Search</p>
 
@@ -55,7 +55,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats Cards */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="group bg-white p-6 rounded-2xl shadow hover:shadow-xl transition border border-transparent hover:border-blue-100">
           <div className="flex items-start justify-between">
@@ -109,9 +109,9 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Dashboard Grid: Left - Actions, Right - Widgets */}
+ 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        {/* Quick actions */}
+
         <div className="lg:col-span-2 bg-white rounded-2xl shadow p-6 border">
           <div className="flex items-center justify-between gap-4">
             <div>
@@ -174,7 +174,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Right widgets */}
+      
         <div className="bg-white rounded-2xl shadow p-6 border">
           <h3 className="text-lg font-extrabold text-gray-800">
             Weekly Progress 📈
@@ -183,7 +183,6 @@ export default function Dashboard() {
             Your activity summary (demo)
           </p>
 
-          {/* Fake progress bars */}
           <div className="mt-5 space-y-4">
             <div>
               <div className="flex justify-between text-sm font-semibold text-gray-700">

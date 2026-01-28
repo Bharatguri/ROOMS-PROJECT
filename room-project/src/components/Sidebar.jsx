@@ -27,7 +27,7 @@ export default function Sidebar() {
         </NavLink>
 
 
-        {user?.role === "student" && (
+        {/* {user?.role === "student" && ( */}
           <>
            
             <NavLink to="/city" className={linkClass}>City</NavLink>
@@ -40,7 +40,7 @@ export default function Sidebar() {
              
 
           </>
-        )}
+        {/* // )} */}
 
 
         {user?.role === "owner" && (
