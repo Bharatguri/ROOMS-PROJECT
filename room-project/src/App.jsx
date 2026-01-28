@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import City from "./pages/City";
 import SearchGym from "./pages/SearchGym";
-import TrainerProfile from "./pages/TrainerProfile"; import Diets from "./pages/Diets";
+import TrainerProfile from "./pages/TrainerProfile"; 
+import Diets from "./pages/Diets";
 import Supplements from "./pages/Supplements";
 import GymDetails from "./pages/GymDetails";
 import TrainerBooking from "./pages/TrainerBooking";
