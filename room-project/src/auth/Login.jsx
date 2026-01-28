@@ -7,68 +7,43 @@ import { useAuth } from "../context/AuthContext";
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [role, setRole] = useState("student");
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    if (!form.email || !form.password) {
-      alert("Please enter email and password");
-      return;
-    }
-
-    const success = login(form.email);
-
-    if (success) {
-      navigate("/dashboard");
-    } else {
-      alert("User not found. Please register first.");
-    }
+  const handleLogin = () => {
+    login(role); 
+    navigate("/dashboard");
   };
 
   return (
-    <AuthLayout
-      title="Welcome 👋"
-      subtitle="Login to continue building your beast body 💪"
-    >
-      <form onSubmit={handleLogin}>
-        <Input
-          name="email"
-          placeholder="Email Address"
-          value={form.email}
-          onChange={handleChange}
-        />
+    <AuthLayout title="Welcome..  Hope you fine 👋" subtitle="Login to continue built you're beast body..">
+      <Input reqired placeholder="Email or Mobile Number" />
+      <Input type="password" placeholder="Password" />
 
-        <Input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-        />
+    
+      {/* <select
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
+        className="w-full mb-4 px-4 py-2 border border-gray-300 rounded-lg"
+      >
+        <option value="student">Student</option>
+        <option value="owner">Property Owner</option>
+        <option value="tiffin">Tiffin Provider</option>
+        <option value="tiffin">Employee</option>
+      </select> */}
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
+      <button
+        onClick={handleLogin}
+        className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+      >
+        Login
+      </button>
 
-        <p className="text-sm text-center mt-4">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-semibold">
-            Register
-          </Link>
-        </p>
-      </form>
+      <p className="text-sm text-center mt-4">
+        Don’t have an account?{" "}
+        <Link to="/register" className="text-blue-600 font-semibold">
+          Register
+        </Link>
+      </p>
     </AuthLayout>
   );
 }

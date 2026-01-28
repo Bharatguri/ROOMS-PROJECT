@@ -1,46 +1,21 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // Load user from localStorage on refresh
-  useEffect(() => {
-    const savedUser = localStorage.getItem("gymnest-user");
-    if (savedUser) setUser(JSON.parse(savedUser));
-  }, []);
-
-  // Login (email + password later)
-  const login = (email) => {
-    const savedUser = JSON.parse(localStorage.getItem("gymnest-user"));
-
-    if (savedUser && savedUser.email === email) {
-      setUser(savedUser);
-      return true;
-    }
-
-    return false;
+  const login = (role = "student") => {
+    setUser({
+      name: "Demo User",
+      role, 
+    });
   };
 
-  // Register user
-  const register = (data) => {
-    const newUser = {
-      ...data,
-      role: "member", // system role
-    };
-
-    localStorage.setItem("gymnest-user", JSON.stringify(newUser));
-    setUser(newUser);
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("gymnest-user");
-  };
+  const logout = () => setUser(null);
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
