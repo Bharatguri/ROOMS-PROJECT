@@ -85,13 +85,13 @@ export default function Register() {
           placeholder="Password"
           type="password"
           {...register("password", { required: "Password is required" })}
-
+    
         />
-
+ 
          <Input
-          placeholder="Message"
-          type="Message"
-          {...register("Me", { required: "Password is required" })}
+          placeholder="message"
+          type="message"
+          {...register("message", { required: "Password is required" })}
 
         />
 
