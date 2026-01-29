@@ -9,11 +9,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     if (token) {
-      navigate("/dashboard")
+      navigate("/dashboard");
     }
-  }, [])
+  }, []);
 
   const {
     register,
@@ -25,23 +25,20 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await baseUrl.post("/user/login", values);
-      // console.log(response.status==200) 
+      // console.log(response.status==200)
 
       if (response.status == 200) {
-        const token = response?.data?.token
+        const token = response?.data?.token;
         toast.success("Login successful 💪");
-        localStorage.setItem("token", token)
+        localStorage.setItem("token", token);
         navigate("/dashboard");
       }
 
-
       console.log(response.data);
-
-
     } catch (error) {
       toast.error(
         error?.response?.data?.message ||
-        "Login failed. Please check your credentials."
+          "Login failed. Please check your credentials.",
       );
     } finally {
       setLoading(false);
@@ -51,7 +48,6 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-800 px-4">
       <div className="bg-white w-full max-w-md rounded-3xl shadow-xl p-8">
-
         <div className="text-center mb-6">
           <h2 className="text-3xl font-extrabold text-gray-800">
             Beast House 💀
@@ -62,7 +58,6 @@ const Login = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
           <div>
             <label className="text-sm font-semibold text-gray-700">
               Email Address
@@ -82,7 +77,6 @@ const Login = () => {
             )}
           </div>
 
-
           <div>
             <label className="text-sm font-semibold text-gray-700">
               Password
@@ -101,7 +95,14 @@ const Login = () => {
               </p>
             )}
           </div>
-
+          <div className="text-right text-sm">
+            <span
+              onClick={() => navigate("/forgot-password")}
+              className="text-blue-600 font-semibold cursor-pointer hover:underline"
+            >
+              Forgot Password?
+            </span>
+          </div>
 
           <button
             disabled={loading}
@@ -111,7 +112,6 @@ const Login = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}

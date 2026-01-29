@@ -14,7 +14,11 @@ import Membership from "./pages/Membership";
 
 
 
+
+
+
 import ProtectedRoute from "./components/ProtectedRoute";
+import ForgotPassword from "./auth/ForgetPassword";
 
 export default function App() {
   return (
@@ -116,7 +120,8 @@ export default function App() {
           }
         />
 
-
+        <Route path="/forgot-password"
+         element={<ForgotPassword />} />
 
         {/* ✅ FALLBACK ROUTE */}
         <Route path="*" element={<h1 className="p-6">404 Page Not Found</h1>} />
