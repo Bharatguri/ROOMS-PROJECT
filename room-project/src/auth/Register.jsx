@@ -4,6 +4,7 @@ import AuthLayout from "../components/AuthLayout";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { signUp } from "../service/userservice";
+import { useForm } from "react-hook-form";
 
 export default function Register() {
   const navigate = useNavigate();
