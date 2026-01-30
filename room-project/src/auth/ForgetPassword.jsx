@@ -17,12 +17,12 @@ export default function ForgotPassword() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await baseUrl.post("/user/forgot-password", {
-        email: data.email,
+      await baseUrl.post("/user/forget-password", {
+        userName: data.email,
       });
 
       toast.success("OTP sent to your email 📩");
-      navigate("/verify-otp", { state: { email: data.email, type: "forgot" } });
+      navigate("/verify-otp", { state: { email: data.email, type: "forget" } });
     } catch (error) {
       toast.error(
         error?.response?.data?.message || "Email not found"

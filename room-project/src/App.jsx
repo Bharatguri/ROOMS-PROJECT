@@ -11,6 +11,7 @@ import Supplements from "./pages/Supplements";
 import GymDetails from "./pages/GymDetails";
 import TrainerBooking from "./pages/TrainerBooking";
 import Membership from "./pages/Membership";
+import VerifyOtp from "./auth/VerifyOtp";
 
 
 
@@ -27,6 +28,8 @@ export default function App() {
 
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+
 
         <Route
           path="/dashboard"
