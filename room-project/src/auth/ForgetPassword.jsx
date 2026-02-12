@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { baseUrl } from "../service/baseurl";
 
-export default function ForgotPassword() {
+import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../service/baseurl";
+import toast from "react-hot-toast";
+
+
+export default function ForgetPassword() {
   const navigate = useNavigate();
+
+  const [otpSent, setOtpSent] = useState(false);
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
   const {
@@ -14,7 +19,8 @@ export default function ForgotPassword() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+ 
+  const sendOtp = async (data) => {
     setLoading(true);
     try {
       await baseUrl.post("/user/forget-password", {
@@ -22,11 +28,28 @@ export default function ForgotPassword() {
       });
 
       toast.success("OTP sent to your email 📩");
-      navigate("/verify-otp", { state: { email: data.email, type: "forget" } });
-    } catch (error) {
-      toast.error(
-        error?.response?.data?.message || "Email not found"
-      );
+      setEmail(data.email);
+      setOtpSent(true);
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Email not found");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+ 
+  const verifyOtp = async (data) => {
+    setLoading(true);
+    try {
+      await baseUrl.post("/user/verify-forget-otp", {
+        email,
+        otp: data.otp,
+      });
+
+      toast.success("OTP verified successfully ✅");
+      navigate("/"); 
+    } catch (err) {
+      toast.error("Invalid OTP");
     } finally {
       setLoading(false);
     }
@@ -41,20 +64,25 @@ export default function ForgotPassword() {
             Forgot Password 🔐
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Enter your email to receive OTP
+            Enter email and verify OTP
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
+   
+        <form
+          onSubmit={handleSubmit(otpSent ? verifyOtp : sendOtp)}
+          className="space-y-4"
+        >
+       
           <div>
             <label className="text-sm font-semibold text-gray-700">
               Email Address
             </label>
             <input
               type="email"
+              disabled={otpSent}
               placeholder="Enter your email"
-              className="mt-1 w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-1 w-full px-4 py-3 border rounded-xl disabled:bg-gray-100"
               {...register("email", {
                 required: "Email is required",
               })}
@@ -66,14 +94,33 @@ export default function ForgotPassword() {
             )}
           </div>
 
+      
+          {otpSent && (
+            <div>
+              <label className="text-sm font-semibold text-gray-700">
+                OTP
+              </label>
+              <input
+                placeholder="Enter OTP"
+                className="mt-1 w-full px-4 py-3 border rounded-xl"
+                {...register("otp", {
+                  required: "OTP is required",
+                })}
+              />
+            </div>
+          )}
+
           <button
             disabled={loading}
             type="submit"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-extrabold hover:opacity-95 transition"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-extrabold"
           >
-            {loading ? "Sending OTP..." : "Send OTP"}
+            {loading
+              ? "Please wait..."
+              : otpSent
+              ? "Verify OTP"
+              : "Send OTP"}
           </button>
-
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
