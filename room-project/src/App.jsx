@@ -2,20 +2,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./pages/Dashboard";
-import Profile from "./pages/Profile";
-import City from "./pages/City";
+import Profile from "./profile/Profile";
+import City from "./pages/City";   
 import SearchGym from "./pages/SearchGym";
+import CreateTrainerProfile from "./AdminPannel/CreateTrainerProfile"; 
 import TrainerProfile from "./pages/TrainerProfile"; 
 import Diets from "./pages/Diets";
-import Supplements from "./pages/Supplements";
+import SaleProduct from "./pages/Supplements";
 import GymDetails from "./pages/GymDetails";
 import TrainerBooking from "./pages/TrainerBooking";
 import Membership from "./pages/Membership";
 import VerifyOtp from "./auth/VerifyOtp";
-
-
-
-
 
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -29,7 +26,7 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
-
+        <Route path="/CreateTrainerProfile" element={<CreateTrainerProfile />} />
 
         <Route
           path="/dashboard"
@@ -39,6 +36,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
 
 
         <Route
@@ -78,8 +76,9 @@ export default function App() {
           }
         />
 
+
         <Route
-          path="/trainer-profile"
+          path="/Trainerprofile"
           element={
             <ProtectedRoute>
               <TrainerProfile />
@@ -97,10 +96,10 @@ export default function App() {
         />
 
         <Route
-          path="/supplements"
+          path="/SaleProduct"
           element={
             <ProtectedRoute>
-              <Supplements />
+              <SaleProduct />
             </ProtectedRoute>
           }
         />
@@ -129,6 +128,8 @@ export default function App() {
         {/* ✅ FALLBACK ROUTE */}
         <Route path="*" element={<h1 className="p-6">404 Page Not Found</h1>} />
       </Routes>
+
+      
     </BrowserRouter>
   );
 }

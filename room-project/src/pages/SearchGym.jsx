@@ -17,10 +17,16 @@ export default function SearchGym() {
     <DashboardLayout>
       <div className="flex items-center justify-between mb-6">  
         <h2 className="text-2xl font-bold">Search Gym</h2>
-        <input
-          placeholder="Search gym name / area..."
-          className="px-4 py-2 border rounded-lg w-72"
-        />
+
+        <select 
+        className="px-4 py-2 border rounded-lg w-72"
+        >
+            <option value="">Select City</option>
+            <option value="beginner">Hisar</option>
+            <option value="intermediate">Delhi</option>
+            <option value="advanced">Gurugram</option>
+            <option value="professional">Bihar</option>
+          </select>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -37,6 +43,8 @@ export default function SearchGym() {
                 ⭐ Rating: {g.rating}
               </p>
             </div>
+
+
 
             <button
               onClick={() => navigate(`/gym/${g.id}`)}

@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 
 export default function Register() {
   const navigate = useNavigate();
-  // const { register } = useAuth();
 
   const {
     register,
@@ -17,7 +16,7 @@ export default function Register() {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = async (values) => {
-    values.message = "abcdefghijk"
+    // values.message = "abcdefghijk"
     values.isOtp = false
     try {
       const response = await signUp(values)
@@ -25,29 +24,6 @@ export default function Register() {
 
     }
   }
-
-  // const handleChange = (e) => {
-  //   setForm({ ...form, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (
-  //     !form.name ||
-  //     !form.weight ||
-  //     !form.height ||
-  //     !form.email ||
-  //     !form.password ||
-  //     !form.level
-  //   ) {
-  //     alert("Please fill all fields");
-  //     return;
-  //   }
-
-  //   register(form);
-  //   navigate("/dashboard");
-  // };
 
   return (
     <AuthLayout title="Create Account" subtitle="Start your Beast House journey 💪">
@@ -94,7 +70,7 @@ export default function Register() {
 
         </div>
 
-        {/* Email */}
+        {/* Email */}  
         <div>
           <Input
             placeholder="Email Address"
@@ -117,6 +93,18 @@ export default function Register() {
           />
           {errors.password && (
             <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+          )}
+        </div>
+
+         <div>
+          <Input
+            placeholder=" Message "
+            type="Message"
+            {...register("message", { required: "Message is required" })}
+            className={errors.message ? "border-red-500" : ""}
+          />
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
           )}
         </div>
 

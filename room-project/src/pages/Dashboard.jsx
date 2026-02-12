@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const { user } = useAuth();
+  localStorage.removeItem("token")
   const navigate = useNavigate();
+
 
   return (
     <DashboardLayout>

@@ -27,22 +27,18 @@ export default function Sidebar() {
         </NavLink>
 
 
-        {/* {user?.role === "student" && ( */}
+
           <>
            
-            <NavLink to="/city" className={linkClass}>City</NavLink>
+            {/* <NavLink to="/city" className={linkClass}>City</NavLink> */}
             <NavLink to="/searchgym" className={linkClass}>Search Gym</NavLink>
-            <NavLink to="/trainer-profile" className={linkClass}>Trainer Profile</NavLink>
+            <NavLink to="/Trainerprofile" className={linkClass}>Trainer Profile</NavLink>
             <NavLink to="/membership" className={linkClass}>Membership</NavLink>
             <NavLink to="/diets" className={linkClass}>About Dietition</NavLink>
-            <NavLink to="/supplements" className={linkClass}>Buy Supplements</NavLink>
-             <NavLink to="/profile" className={linkClass}>Profile</NavLink>
-             
-
+            <NavLink to="/SaleProduct" className={linkClass}>Buy Supplements</NavLink>
+            
           </>
-        {/* // )} */}
-
-
+       
         {user?.role === "owner" && (
           <NavLink to="/owner/properties" className={linkClass}>
             My Properties
