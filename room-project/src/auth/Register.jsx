@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import AuthLayout from "../components/AuthLayout";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { signUp } from "../service/userservice";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -10,25 +12,33 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    form,
-    formState: { errors }
+    formState: { errors },
   } = useForm({ mode: "onChange" });
 
   const onSubmit = async (values) => {
-    // values.message = "abcdefghijk"
-    values.isOtp = false
-    try {
-      const response = await signUp(values)
-    } catch (error) {
+    values.isOtp = false;
 
+    try {
+      await signUp(values);
+
+      toast.success("Account created successfully 💪");
+
+      navigate("/dashboard");
+
+    } catch (error) {
+      toast.error("Registration failed");
+      console.log(error);
     }
-  }
+  };
 
   return (
-    <AuthLayout title="Create Account" subtitle="Start your Beast House journey 💪">
+    <AuthLayout
+      title="Create Account"
+      subtitle="Start your Beast House journey 💪"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
-        {/* Name */}
+        {/* Full Name */}
         <div>
           <Input
             placeholder="Full Name"
@@ -36,13 +46,14 @@ export default function Register() {
             className={errors.firstName ? "border-red-500" : ""}
           />
           {errors.firstName && (
-            <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>
+            <p className="text-red-500 text-xs mt-1">
+              {errors.firstName.message}
+            </p>
           )}
         </div>
 
         {/* Weight + Height */}
         <div className="grid grid-cols-2 gap-3">
-
           <div>
             <Input
               placeholder="Weight (kg)"
@@ -51,7 +62,9 @@ export default function Register() {
               className={errors.weight ? "border-red-500" : ""}
             />
             {errors.weight && (
-              <p className="text-red-500 text-xs mt-1">{errors.weight.message}</p>
+              <p className="text-red-500 text-xs mt-1">
+                {errors.weight.message}
+              </p>
             )}
           </div>
 
@@ -63,13 +76,14 @@ export default function Register() {
               className={errors.height ? "border-red-500" : ""}
             />
             {errors.height && (
-              <p className="text-red-500 text-xs mt-1">{errors.height.message}</p>
+              <p className="text-red-500 text-xs mt-1">
+                {errors.height.message}
+              </p>
             )}
           </div>
-
         </div>
 
-        {/* Email */}  
+        {/* Email */}
         <div>
           <Input
             placeholder="Email Address"
@@ -78,7 +92,9 @@ export default function Register() {
             className={errors.email ? "border-red-500" : ""}
           />
           {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+            <p className="text-red-500 text-xs mt-1">
+              {errors.email.message}
+            </p>
           )}
         </div>
 
@@ -91,19 +107,24 @@ export default function Register() {
             className={errors.password ? "border-red-500" : ""}
           />
           {errors.password && (
-            <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+            <p className="text-red-500 text-xs mt-1">
+              {errors.password.message}
+            </p>
           )}
         </div>
 
-         <div>
+        {/* Message */}
+        <div>
           <Input
-            placeholder=" Message "
-            type="Message"
+            placeholder="Message"
+            type="text"
             {...register("message", { required: "Message is required" })}
             className={errors.message ? "border-red-500" : ""}
           />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+          {errors.message && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.message.message}
+            </p>
           )}
         </div>
 
@@ -111,8 +132,9 @@ export default function Register() {
         <div>
           <select
             {...register("level", { required: "Level is required" })}
-            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.level ? "border-red-500" : ""
-              }`}
+            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              errors.level ? "border-red-500" : ""
+            }`}
           >
             <option value="">Select Fitness Level</option>
             <option value="beginner">Beginner</option>
@@ -122,21 +144,27 @@ export default function Register() {
           </select>
 
           {errors.level && (
-            <p className="text-red-500 text-xs mt-1">{errors.level.message}</p>
+            <p className="text-red-500 text-xs mt-1">
+              {errors.level.message}
+            </p>
           )}
         </div>
 
+        {/* Submit Button */}
         <Button text="Create Account" />
 
+        {/* Login Link */}
         <p className="text-sm text-center mt-4 text-gray-600">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-600 font-semibold hover:underline">
+          <Link
+            to="/"
+            className="text-blue-600 font-semibold hover:underline"
+          >
             Login
           </Link>
         </p>
 
       </form>
-
     </AuthLayout>
   );
 }

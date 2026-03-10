@@ -1,44 +1,48 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { baseUrl } from "../service/baseurl";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/dashboard");
     }
-  }, []);
+  }, [navigate]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const onSubmit = async (values) => {
     setLoading(true);
+
     try {
       const response = await baseUrl.post("/user/login", values);
-      // console.log(response.status==200)
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         const token = response?.data?.token;
+
+        if (token) {
+          localStorage.setItem("token", token);
+        }
+
         toast.success("Login successful 💪");
-        localStorage.setItem("token", token);
         navigate("/dashboard");
       }
 
-      console.log(response.data);
     } catch (error) {
       toast.error(
         error?.response?.data?.message ||
-          "Login failed. Please check your credentials.",
+          "Login failed. Please check your credentials."
       );
     } finally {
       setLoading(false);
@@ -48,6 +52,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-800 px-4">
       <div className="bg-white w-full max-w-md rounded-3xl shadow-xl p-8">
+
+        {/* Header */}
         <div className="text-center mb-6">
           <h2 className="text-3xl font-extrabold text-gray-800">
             Beast House 💀
@@ -57,7 +63,10 @@ const Login = () => {
           </p>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+
+          {/* Email */}
           <div>
             <label className="text-sm font-semibold text-gray-700">
               Email Address
@@ -77,6 +86,7 @@ const Login = () => {
             )}
           </div>
 
+          {/* Password */}
           <div>
             <label className="text-sm font-semibold text-gray-700">
               Password
@@ -95,36 +105,42 @@ const Login = () => {
               </p>
             )}
           </div>
+
+          {/* Forgot Password */}
           <div className="text-right text-sm">
-            <span
+            <button
+              type="button"
               onClick={() => navigate("/forgot-password")}
-              className="text-blue-600 font-semibold cursor-pointer hover:underline"
+              className="text-blue-600 font-semibold hover:underline"
             >
               Forgot Password?
-            </span>
+            </button>
           </div>
 
+          {/* Submit Button */}
           <button
             disabled={loading}
             type="submit"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-extrabold hover:opacity-95 transition"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-extrabold hover:opacity-95 transition disabled:opacity-60"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
+
         </form>
 
+        {/* Register Link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}
-          <span
+          <button
+            type="button"
             onClick={() => navigate("/register")}
-            className="text-blue-600 font-bold cursor-pointer"
+            className="text-blue-600 font-bold hover:underline"
           >
             Register
-          </span>
+          </button>
         </p>
+
       </div>
     </div>
   );
-};
-
-export default Login;
+}
